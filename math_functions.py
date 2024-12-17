@@ -1,3 +1,6 @@
+# Hausaufgabe vom  2024.12.17
+
+
 # km to miles
 def km_to_miles(km):
     zahl1 = float(km)
