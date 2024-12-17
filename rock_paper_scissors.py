@@ -4,6 +4,7 @@ import random
 
 while True:
 
+    print("Lass uns Schere Stein Papier spielen!")
     player_action = input("Wähle: (Schere, Stein, Papier): ")
     possible_actions = ["Schere", "Stein", "Papier"]
     com_action = random.choice(possible_actions)
