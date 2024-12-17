@@ -1,6 +1,26 @@
 # Hausaufgabe vom  2024.12.17
 
 
+# Additions-Funktion
+def add(zahl1, zahl2):
+    return zahl1 + zahl2
+
+
+# Substraktions-Funktion
+def subtract(zahl1, zahl2):
+    return zahl1 - zahl2
+
+
+# multiplikation-Funktion
+def mult(zahl1, zahl2):
+    return zahl1 * zahl2
+
+
+# Division-Funktion
+def div(zahl1, zahl2):
+    return zahl1 / zahl2
+
+
 # km to miles
 def km_to_miles(km):
     zahl1 = float(km)
