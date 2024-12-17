@@ -4,11 +4,11 @@ import random
 
 while True:
 
-    print("Lass uns Schere Stein Papier spielen!")
+    print("Lass uns eine Runde Schere-Stein-Papier spielen!")
     player_action = input("Wähle: (Schere, Stein, Papier): ")
     possible_actions = ["Schere", "Stein", "Papier"]
     com_action = random.choice(possible_actions)
-    print(f"\nDeine Wahl {player_action}, COM Wahl {com_action}.\n")
+    print(f"\nDeine Wahl ist {player_action}, COM Wahl ist {com_action}.\n")
 
     if player_action == com_action:
         print(f"Beide Spieler haben {player_action} gewählt. Es ist unentschieden!")
