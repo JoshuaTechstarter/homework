@@ -1,14 +1,15 @@
 import datetime
-import calendar
+
+# import calendar
 
 
 # 1. Aktuelles Datum und Uhrzeit ausgeben:
 def aktuelles_datum_und_uhrzeit():
     jetzt = datetime.datetime.now()
-    print(jetzt.strftime("Heute ist der %d.%m.%Y und es ist %H:%M:%S"))
+    print(jetzt.strftime("Datum: %d.%m.%Y Uhrzeit: %H:%M:%S\n"))
 
 
-aktuelles_datum_und_uhrzeit()
+# aktuelles_datum_und_uhrzeit()
 
 
 # 2. Differenz bis zum Jahresende berechnen:
@@ -16,35 +17,40 @@ def tage_bis_jahresende():
     heute = datetime.date.today()
     jahresende = datetime.date(2024, 12, 31)
     ergebnis = (jahresende - heute).days
-    return print(f"{ergebnis} Tage bis das Jahr vorbei ist!")
+    return print(f"{ergebnis} Tage bis das Jahr vorbei ist!\n")
 
 
-tage_bis_jahresende()
+# tage_bis_jahresende()
 
 # #3. Benutzerdefiniertes Datum:
 
 
 def tage_bis_datum():
-    dein_datum = input("Gib Datum: ")
-    datum = datetime.datetime.strptime(dein_datum, "%d.%m.%Y")
-    heute = datetime.datetime.today()
+    dein_datum = input("Gib Datum ein (DD.MM.YYY) ")
+    datum = datetime.date.strptime(dein_datum, "%d.%m.%Y")
+    heute = datetime.date.today()
     ergebnis = abs(heute - datum).days
-    return print(f"Es sind noch {ergebnis} Tage bis {dein_datum}")
+    return print(f"Es sind noch {ergebnis} Tage bis {dein_datum}\n")
 
 
-tage_bis_datum()
+# tage_bis_datum()
 
 
 # 4. Wochentag berechnen:
 
 
-def wochentag_berechnen():
-    wochentag = input("Bitte nenne ein Datum ")
-    day = datetime.datetime.strptime(wochentag, "%d.%m.%Y").date()
-    print(f"Der {wochentag} ist ein {calendar.day_name[day.weekday()]}")
+def wochentag_berechnen(user_date):
+    return user_date.strftime("%A")
 
 
-wochentag_berechnen()
+user_date_str = input("Enter a date (DD.MM.YYY)")
+
+user_date = datetime.datetime.strptime(user_date_str, "%d.%m.%Y")
+
+
+result_weekday = wochentag_berechnen(user_date)
+
+print(f"The weekday of the input date is {result_weekday}")
 
 
 # 5. Zeitverschiebung berechnen:
@@ -61,6 +67,6 @@ def zeit_in_zukunft():
     return print(f"Die Zeitverschiebung beträgt: {jandelay + jetzt}")
 
 
-zeit_in_zukunft()
+# zeit_in_zukunft()
 
 # ?!?!?!
