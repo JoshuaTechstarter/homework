@@ -43,3 +43,8 @@ def celsius_to_fahrenheit(c):
 def fahrenheit_to_celsius(f):
     zahl1 = float(f)
     return (zahl1 - 32) * (5 / 9)
+
+
+zahlen = [1, 2, 3, 4, 5]
+print("Die erste Zahl ist:", zahlen[0])
+print("Die letzte Zahl ist:", zahlen[-1])
