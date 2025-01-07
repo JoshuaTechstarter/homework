@@ -13,3 +13,11 @@ class Zutat:
 
 
 # Aufgabe 1.2:
+class Rezept:
+    def __init__(self, name, beschreibung):
+        self.name = name
+        self.beschreibung = beschreibung
+        self.zutatenliste = {}
+
+    def zutat_hinzufügen(self, zutat, menge):
+        self.zutatenliste[zutat] = menge
