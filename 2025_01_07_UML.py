@@ -12,4 +12,4 @@ class Zutat:
         return f"{self.name} (Kalorien/100g: {self.kalorien_pro_100g}, Zubereitungszeit: {self.zubereitungszeit} Minuten)"
 
 
-# 1.2:
+# Aufgabe 1.2:
