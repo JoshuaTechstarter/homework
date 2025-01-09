@@ -1,21 +1,23 @@
 class Pet:
-    def __init__(self, name, species, age, favorite_food, energy_level):
+    def __init__(self, name, gender, species, age, favorite_food, energy_level):
         self.name = name
+        self.gender = gender
         self.species = species
         self.age = age
         self.fav_food = favorite_food
         self.energy_level = energy_level
 
     def get_description(self):
-        return f"My pet {self.name} is a {self.species} and is currently {self.age} years old."
+        return f"Mein Haustier {self.name} ist ein(e){self.gender}{self.species} und ist {self.age} Jahre alt."
 
     def play(self, duration):
         energy_loss = duration * 5
-        if self.energy_level - energy_loss >= 0:
-            self.energy_level -= energy_loss
-        else:
+        if self.energy_level < energy_loss:
             self.energy_level = 0
             print(f"{self.name} ist müde und braucht eine Pause!")
+
+        else:
+            self.energy_level = self.energy_level - energy_loss
         return f"{self.name} hat gespielt und hat jetzt {self.energy_level} Energie."
 
     def feed(self, food):
@@ -41,23 +43,14 @@ class Pet:
         return f"{self.name} hat jetzt {self.energy_level} Energie."
 
 
-my_female_cat = Pet("Lucy", "cat", 2, "Schleckis", 100)
-my_male_cat = Pet("Finn", "cat", 2, "fish", 100)
+my_first_cat = Pet("Lucy", "weiblich", "Katze", 2, "Schleckis", 100)
+print(my_first_cat.get_description())
+print(my_first_cat.play(20))
+print(my_first_cat.feed("Schleckis"))
+print(my_first_cat.sleep(2))
 
-# Beschreibung ausgeben
-print(my_female_cat.get_description())
-# Haustier spielen lassen
-print(my_male_cat.play(10))
-print(my_female_cat.play(20))
-
-# Haustier füttern
-print(my_male_cat.feed("Trockenfutter"))
-print(my_female_cat.feed("Schleckis"))
-# Energie nach dem Spielen
-print(my_male_cat.play(10))
-
-# Schlafen, um Energie aufzuladen
-print(my_male_cat.sleep(4))
-
-# Schlafen, bis die Energie voll ist
-print(my_female_cat.sleep(2))
+my_other_cat = Pet("Finn", "männlich", "Kater", 2, "Fisch", 100)
+print(my_other_cat.get_description())
+print(my_other_cat.feed("Trockenfutter"))
+print(my_other_cat.play(10))
+print(my_other_cat.sleep(4))
