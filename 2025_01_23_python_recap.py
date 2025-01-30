@@ -85,4 +85,53 @@ b = [number for number in a if number % 2 == 0]
 
 print(b)
 
+
+# 30.01.2025
 # Exercise 8
+
+
+import random
+
+
+while True:
+    print("Lets play Rock-Paper-Scissors!")
+    player_action = input("Choose: (Rock, Paper, Scissors): ")
+    possible_actions = ["Rock", "Paper", "Scissors"]
+    com_action = random.choice(possible_actions)
+    print(f"\nYour choice: {player_action} VS COM choice {com_action}.\n")
+
+    # untentschieden
+    if player_action == com_action:
+        print(f"Both players picked {player_action}. Its a draw!")
+
+    elif (
+        (player_action == "Rock" and com_action == "Scissors")
+        or (player_action == "Paper" and com_action == "Rock")
+        or (player_action == "Scissors" and com_action == "Rock")
+    ):
+        print("You win.. this time!")
+    else:
+        print("You lose!")
+
+    play_again = input("New round?(Y/N): ")
+    if play_again.lower() != "y":
+        break
+    else:
+        print("Please try again!")
+        continue
+
+
+# Exercise 20
+def find(ordered_list, element_to_find):
+    for element in ordered_list:
+        if element == element_to_find:
+            return True
+    return False
+
+
+if __name__ == "__main__":
+    l = [2, 4, 6, 8, 10]
+    print(find(l, 5))  # prints False
+    print(find(l, 10))  # prints True
+    print(find(l, -1))  # prints False
+    print(find(l, 2))  # prints True
