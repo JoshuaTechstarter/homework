@@ -135,3 +135,22 @@ if __name__ == "__main__":
     print(find(l, 10))  # prints True
     print(find(l, -1))  # prints False
     print(find(l, 2))  # prints True
+
+
+# Exercise 11 - Is prime number?
+
+num = int(input("Insert a number: "))
+a = [x for x in range(2, num) if num % x == 0]
+
+
+def is_prime(n):
+    if num > 1:
+        if len(a) == 0:
+            print("prime")
+        else:
+            print("NOT prime")
+    else:
+        print("NOT prime")
+
+
+is_prime(num)
