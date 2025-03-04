@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function buttonClicked() {
+            // alert("Button clicked!");
+            let textfeld = document.getElementById("textfeld");
+            textfeld.innerHTML = "Hallo Lukas!";
+        }
+        function deleteText() {
+            // alert("Button clicked!");
+            let textfeld = document.getElementById("textfeld");
+            textfeld.innerHTML = "";
+        }
+
+        function changeColor() {
+            let body = document.getElementById("bodyElement"); // Zugriff auf das <body> Element
+
+            if (body.style.backgroundColor === "green") {
+                body.style.backgroundColor = "red"; // Setze Hintergrundfarbe auf Rot, falls sie grün ist
+            } else {
+                body.style.backgroundColor = "green"; // Setze Hintergrundfarbe auf Grün
+            }
+        }
+
+
+    </script>
+</head>
+
+<body id="bodyElement" style="background-color: white;">
+    <button onClick="buttonClicked()">Sag "Hallo Lukas"!</button>
+    <button onClick="deleteText()">LÖSCHEN!</button>
+    <button onclick="changeColor()">Farbe wechseln</button>
+
+
+    <h1 id="textfeld"> </h1>
+</body>
+
+</html>
