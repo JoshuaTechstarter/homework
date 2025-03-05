@@ -19,12 +19,12 @@
         }
 
         function changeColor() {
-            let body = document.getElementById("bodyElement"); // Zugriff auf das <body> Element
+            const bodyDiv = document.getElementById("bodyElement"); // Zugriff auf das <body> Element
 
-            if (body.style.backgroundColor === "green") {
-                body.style.backgroundColor = "red"; // Setze Hintergrundfarbe auf Rot, falls sie grün ist
+            if (bodyDiv.style.backgroundColor === "green") {
+                bodyDiv.style.backgroundColor = "red"; // Setze Hintergrundfarbe auf Rot, falls sie grün ist
             } else {
-                body.style.backgroundColor = "green"; // Setze Hintergrundfarbe auf Grün
+                bodyDiv.style.backgroundColor = "green"; // Setze Hintergrundfarbe auf Grün
             }
         }
 
