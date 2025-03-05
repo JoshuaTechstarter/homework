@@ -11,7 +11,7 @@ function onClickButton() {
     const password = document.getElementById("passwordti").value;
     console.log("My Credentials", emailTI, password);
     alert(
-      `Der Bneutzer hat sich erflogreich mit ${emailTI} und ${password} angemeldet`
+      `Der Benutzer hat sich erfolgreich mit ${emailTI} und ${password} angemeldet`
     );
   }
   
