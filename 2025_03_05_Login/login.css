@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+  }
+  #box {
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    background-color: lightblue;
+    margin: 20px auto;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
