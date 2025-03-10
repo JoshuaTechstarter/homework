@@ -5,7 +5,7 @@ function onSignup(){
     const userFirstName = document.getElementById("firstName").value ;
     const userLastName = document.getElementById("lastName").value ;
 
-    if (userEmail && userPassword && userPasswordAgain && userFirstName && userLastName !== undefined){
+    if (userEmail && userPassword && userPasswordAgain && userFirstName && userLastName == undefined){
         if (userEmail.indexOf("@") !== -1) {
         } else {alert("Gib eine richtige E-Mail ein.")}
         if (userPassword === userPasswordAgain){  
