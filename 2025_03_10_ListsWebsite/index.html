@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hausaufgabe 10.03.2025</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <button onclick="setListContent()">Statische Liste laden</button>
+    <br><br>
+
+    <!-- Input für mehrere Elemente -->
+    <input id="userInput" placeholder="Mehrere Element hinzufügen">
+    <button onclick="setUserInputList()">Elemente hinzufügen</button>
+
+
+    <!-- Input für ein einzelnes Element -->
+    <input id="singleItemInput" placeholder="Einzelnes Element hinzufügen">
+    <button onclick="addSingleItem()">Item hinzufügen</button>
+    <br><br>
+
+    <!-- Button zum Löschen des letzten Elements -->
+    <button onclick="removeLastItem()">Letztes Element löschen</button>
+
+
+
+    <!-- Button zum Wiederherstellen der Liste -->
+    <button onclick="restoreOriginalList()">Liste wiederherstellen</button>
+    <br><br>
+    <div id="liste"></div>
+</body>
+
+</html>
