@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 15% auto;
+    grid-template-rows: auto auto 90%;
+    grid-template-areas: 
+        'area1 area1 '
+        'area2 area3 ' 
+        'area2 area4 '
+        ;
+
+}
+
+#c1 {
+    grid-area: area1;
+    background-color: white;
+    padding: 20px;
+    color: darkslategray;
+}
+
+#c2 {
+    grid-area: area2;
+    overflow-y: auto;
+    border: 1px solid lightgray;  
+    color: darkslategray; 
+}
+
+.sideBar{
+    display:flex;
+    flex-direction: column;
+    padding: 15px 0;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.sideBar a{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+#c3 {
+    grid-area: area3;
+    border: 1px solid lightgray;
+}
+
+nav {
+    padding: 15px 0;
+    position: center;
+    margin: 0 auto; 
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 1000;
+
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: darkslategray;
+    padding: 10px 15px;
+    transition: box-shadow 0.3s ease-in-out;
+    transition: 0.3s;
+    box-sizing: border-box;
+
+}
+
+nav ul li a:hover {
+    background:  lightskyblue;
+    color: black;
+}
+
+nav ul li a:active {
+    border-bottom: #2975a1;
+}
+
+
+#c4 {
+    grid-area: area4;
+    overflow-y: auto;
+}
