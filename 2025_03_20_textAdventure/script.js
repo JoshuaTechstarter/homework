@@ -24,7 +24,7 @@ function choosePill() {
     let pill = prompt("Das ist deine letzte Chance.\n Danach gibt es kein Zurück mehr.\n Du musst dich entscheiden, nimmst du die rote oder die blaue Pille? (rot/blau)");
     if (pill === "rot") {
         player.pill = "rot";
-        alert("Du nimmst die rote Pille – du bleibst im Wunderland und ich zeige dir, wie tief der Kaninchenbau ist.");
+        alert("Du nimmst die rote Pille – du bleibst im Wunderland und ich zeige dir, wie tief der Kaninchenbau wirklich ist.");
         enterMatrix();
     } else if (pill === "blau") {
         player.pill = "blau";
@@ -87,7 +87,7 @@ function mission() {
     } else if (missionChoice === "hacker") {
         hackerEncounter();
     } else if (missionChoice === "orakel") {
-        if (player.trustedHacker) {
+        if (player.merovingianMet) {
             oracleEncounter();
         } else {
             alert("Du kennst den Weg zum Orakel noch nicht.");
