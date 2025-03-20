@@ -89,7 +89,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background:  lightskyblue;
+    background:  rgb(229, 217, 217);
     color: black;
 }
 
