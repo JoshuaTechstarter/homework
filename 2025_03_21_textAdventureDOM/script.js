@@ -160,7 +160,7 @@ function handleChoice(choice) {
                 // Wechsel in den entsprechenden Encounter-Zustand
                 gameState = (choice === "schlüsselmacher" ? "keymakerEncounter" : choice + "Encounter");
                 updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-                processEncounter();
+                //processEncounter();
             }
         } else {
             updateButtons(validMissions);
@@ -203,7 +203,7 @@ function handleChoice(choice) {
             }
             gameState = "mission";
             updateQuestion("Wähle eine weitere Begegnung:");
-            updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "orakel", "architekt"]);
+            updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
         } else {
             updateQuestion("Ungültige Wahl. Wähle 'ablenken' oder 'hacken'.");
             updateButtons(["ablenken", "hacken"]);
