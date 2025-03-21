@@ -12,9 +12,9 @@ let player = {
 
 // Spielstart
 function startGame() {
-    player.name = prompt("Wie ist dein Name?");
+    player.name = prompt("Wie ist dein Name?").toLowerCase;
     alert(player.name + ", wach auf!");
-    if (player.name === "Kevin") {
+    if (player.name === "kevin") {
         alert("Hi " + player.name);
     }
     choosePill();
