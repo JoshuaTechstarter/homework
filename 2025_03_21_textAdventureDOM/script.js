@@ -92,7 +92,6 @@ function updateQuestion(text) {
 function handleChoice(choice) {
     if (choice === "neustart") {
         restartGame();
-        return;
     }
 
     // Zustand: Pillenwahl
