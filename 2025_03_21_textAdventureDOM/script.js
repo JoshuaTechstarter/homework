@@ -133,11 +133,8 @@ function handleChoice(choice) {
             gameState = "exitMatrix";
             updateQuestion("Möchtest du ein Leben in scheinbarer Sicherheit führen oder an der Realität zweifeln?");
             updateButtons(["sicherheit", "zweifeln"]);
-        } else {
-            updateQuestion("Ungültige Wahl. Bitte wähle 'rot' oder 'blau'.");
-            updateButtons(["rot", "blau"]);
-        }
-    }
+
+    }}
     // Zustand: Matrix betreten (Crew oder alleine)
     else if (gameState === "enterMatrix") {
         if (choice === "crew" || choice === "alleine") {
@@ -146,11 +143,8 @@ function handleChoice(choice) {
             gameState = "mission";
             updateQuestion("Wähle eine Begegnung:");
             updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-        } else {
-            updateQuestion("Ungültige Wahl. Bitte wähle 'crew' oder 'alleine'.");
-            updateButtons(["crew", "alleine"]);
-        }
-    }
+
+    }}
     // Zustand: Matrix verlassen (Exit)
     else if (gameState === "exitMatrix") {
         if (choice === "sicherheit") {
@@ -159,11 +153,8 @@ function handleChoice(choice) {
         } else if (choice === "zweifeln") {
             updateStory("Du beginnst zu zweifeln – aber die Wahrheit bleibt dir für immer verborgen.");
             endGame("Spiel beendet.");
-        } else {
-            updateQuestion("Ungültige Wahl. Bitte wähle 'sicherheit' oder 'zweifeln'.");
-            updateButtons(["sicherheit", "zweifeln"]);
-        }
-    }
+
+    }}
     // Zustand: Missionen auswählen
     else if (gameState === "mission") {
         let validMissions = ["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"];
@@ -206,10 +197,7 @@ function handleChoice(choice) {
             gameState = "mission";
             updateQuestion("Wähle eine weitere Begegnung:");
             updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-        } else {
-            updateQuestion("Ungültige Wahl. Wähle 'kämpfen' oder 'fliehen'.");
-            updateButtons(["kämpfen", "fliehen"]);
-        }
+
     }
     // Zustand: Sentinel-Begegnung
     else if (gameState === "sentinelEncounter") {
@@ -229,9 +217,6 @@ function handleChoice(choice) {
             gameState = "mission";
             updateQuestion("Wähle eine weitere Begegnung:");
             updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-        } else {
-            updateQuestion("Ungültige Wahl. Wähle 'ablenken' oder 'hacken'.");
-            updateButtons(["ablenken", "hacken"]);
         }
     }
     // Zustand: Hacker-Begegnung
@@ -242,9 +227,6 @@ function handleChoice(choice) {
         } else if (choice === "misstrauen") {
             updateStory("Du misstraust dem Hacker und verlierst möglicherweise wichtige Informationen.");
             player.trustedHacker = false;
-        } else {
-            updateQuestion("Ungültige Wahl. Wähle 'vertrauen' oder 'misstrauen'.");
-            updateButtons(["vertrauen", "misstrauen"]);
         }
         gameState = "mission";
         updateQuestion("Wähle eine weitere Begegnung:");
@@ -258,9 +240,7 @@ function handleChoice(choice) {
         } else if (choice === "ablehnen") {
             updateStory("Du gehst keinen Handel mit dem Merowinger ein.");
             player.merovingianMet = false;
-        } else {
-            updateQuestion("Ungültige Wahl. Wähle 'annehmen' oder 'ablehnen'.");
-            updateButtons(["annehmen", "ablehnen"]);
+
         }
         gameState = "mission";
         updateQuestion("Wähle eine weitere Begegnung:");
@@ -275,9 +255,7 @@ function handleChoice(choice) {
             updateStory("Du lehnst den Schlüssel ab. Ohne den Schlüssel kannst du den Architekten nicht treffen.");
             player.keymakerTaken = false;
             endGame("Ohne den Schlüssel ist deine Reise beendet.");
-        } else {
-            updateQuestion("Ungültige Wahl. Wähle 'nehmen' oder 'ablehnen'.");
-            updateButtons(["nehmen", "ablehnen"]);
+
         }
         gameState = "mission";
         updateQuestion("Wähle eine weitere Begegnung:");
@@ -313,7 +291,7 @@ function handleChoice(choice) {
         updateQuestion("Wähle eine weitere Begegnung:");
         updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
     }
-}
+}}
 
 // Zeigt bei Beginn eines Encounters die passenden Buttons an
 function processEncounter() {
