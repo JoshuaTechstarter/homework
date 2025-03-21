@@ -121,7 +121,7 @@ function handleChoice(choice) {
             updateStory(`Du hast dich entschieden: ${player.isCrew ? "Crew-Mitglied" : "Einzelgänger"}.`);
             gameState = "mission";
             updateQuestion("Wähle eine Begegnung:");
-            updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "orakel", "architekt"]);
+            updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
         } else {
             updateQuestion("Ungültige Wahl. Bitte wähle 'crew' oder 'alleine'.");
             updateButtons(["crew", "alleine"]);
@@ -173,7 +173,7 @@ function handleChoice(choice) {
     // Zustand: Agenten-Begegnung
     else if (gameState === "agentenEncounter") {
         if (choice === "kämpfen") {
-            if (player.isCrew && player.architectMet && player.oracleMet) {
+            if (player.isCrew && (player.architectMet && player.oracleMet)) {
                 updateStory("Mithilfe von Morpheus, Trinity, dem Wissen des Orakels und des Architekten besiegst du Agent Smith nach einem harten Kampf!");
                 winGame("Herzlichen Glückwunsch, du hast die Matrix bezwungen!");
             } else {
