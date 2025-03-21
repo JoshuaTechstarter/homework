@@ -149,17 +149,14 @@ function handleChoice(choice) {
                 updateStory("Dir fehlt der richtige Schlüssel, um den Architekten zu treffen.");
                 updateQuestion("Wähle eine andere Begegnung:");
                 updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-                return;
             } else if (choice === "orakel" && !player.merovingianMet) {
                 updateStory("Du kennst den Weg zum Orakel noch nicht.");
                 updateQuestion("Wähle eine andere Begegnung:");
                 updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-                return;
             } else if (choice === "merowinger" && !player.sentinelHacked) {
                 updateStory("Mit leeren Händen wird dich der Merowinger nicht empfangen.");
                 updateQuestion("Wähle eine andere Begegnung:");
                 updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-                return;
             } else {
                 // Wechsel in den entsprechenden Encounter-Zustand
                 gameState = (choice === "schlüsselmacher" ? "keymakerEncounter" : choice + "Encounter");
@@ -224,7 +221,6 @@ function handleChoice(choice) {
         } else {
             updateQuestion("Ungültige Wahl. Wähle 'vertrauen' oder 'misstrauen'.");
             updateButtons(["vertrauen", "misstrauen"]);
-            return;
         }
         gameState = "mission";
         updateQuestion("Wähle eine weitere Begegnung:");
@@ -241,7 +237,6 @@ function handleChoice(choice) {
         } else {
             updateQuestion("Ungültige Wahl. Wähle 'annehmen' oder 'ablehnen'.");
             updateButtons(["annehmen", "ablehnen"]);
-            return;
         }
         gameState = "mission";
         updateQuestion("Wähle eine weitere Begegnung:");
@@ -256,11 +251,9 @@ function handleChoice(choice) {
             updateStory("Du lehnst den Schlüssel ab. Ohne den Schlüssel kannst du den Architekten nicht treffen.");
             player.keymakerTaken = false;
             endGame("Ohne den Schlüssel ist deine Reise beendet.");
-            return;
         } else {
             updateQuestion("Ungültige Wahl. Wähle 'nehmen' oder 'ablehnen'.");
             updateButtons(["nehmen", "ablehnen"]);
-            return;
         }
         gameState = "mission";
         updateQuestion("Wähle eine weitere Begegnung:");
@@ -276,7 +269,6 @@ function handleChoice(choice) {
             player.architectMet = true;
         } else {
             updateButtons(["akzeptieren", "ablehnen"]);
-            return;
         }
         gameState = "mission";
         updateQuestion("Wähle eine weitere Begegnung:");
@@ -292,7 +284,6 @@ function handleChoice(choice) {
             player.oracleMet = true;
         } else {
             updateButtons(["zukunft", "vergangenheit"]);
-            return;
         }
         gameState = "mission";
         updateQuestion("Wähle eine weitere Begegnung:");
