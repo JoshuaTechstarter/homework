@@ -59,7 +59,7 @@ function handleName() {
 }
 
 // Erzeugt Buttons anhand eines Options-Arrays und passt Farbe an (für rot und blau)
-function updateButtons(options) {
+/* function updateButtons(options) {
     const buttonsDiv = document.getElementById("buttons");
     buttonsDiv.innerHTML = "";
     options.forEach(option => {
@@ -76,7 +76,32 @@ function updateButtons(options) {
         btn.addEventListener("click", () => handleChoice(option.toLowerCase()));
         buttonsDiv.appendChild(btn);
     });
-}
+} */
+    function updateButtons(options) {
+        const buttonsDiv = document.getElementById("buttons");
+        buttonsDiv.innerHTML = "";
+        options.forEach(option => {
+            let normalizedOption = option
+                .replace(/ä/g, "ae")
+                .replace(/ö/g, "oe")
+                .replace(/ü/g, "ue");
+    
+            const btn = document.createElement("button");
+            btn.innerText = normalizedOption;
+    
+            // Spezielle Farbe für rote und blaue Pille
+            if (normalizedOption.toLowerCase() === "rot") {
+                btn.style.backgroundColor = "red";
+                btn.style.color = "white";
+            } else if (normalizedOption.toLowerCase() === "blau") {
+                btn.style.backgroundColor = "blue";
+                btn.style.color = "white";
+            }
+    
+            btn.addEventListener("click", () => handleChoice(normalizedOption.toLowerCase()));
+            buttonsDiv.appendChild(btn);
+        });
+    }
 
 // Neueste Story-Einträge werden oben eingefügt
 function updateStory(text) {
