@@ -25,314 +25,10 @@ function draw() {
 // Matrix-Effekt läuft kontinuierlich im Hintergrund
 setInterval(draw, 50);
 
-// Spielerobjekt
-let player = {
-    name: "",
-    pill: "",
-    trustedHacker: false,
-    merovingianMet: false,
-    isCrew: false,
-    keymakerTaken: false,
-    architectMet: false,
-    oracleMet: false,
-    sentinelHacked: false
-};
-
-// Mögliche Spielzustände:
+let player = {};
 let gameState = "start";
 
-// Namenseingabe per Input-Feld
-function handleName() {
-    const inputField = document.getElementById("input-field");
-    let name = inputField.value.trim();
-    if (name === "") return;
-    player.name = name;
-    updateStory(`${player.name}, wach auf!`);
-    if (player.name.toLowerCase() === "kevin") {
-        updateStory(`Hi ${player.name}!`);
-    }
-    // Entferne die Input-Area und wechsle zu Buttons
-    document.getElementById("input-area").innerHTML = "";
-    gameState = "choosePill";
-    updateQuestion("Das ist deine letzte Chance. Wähle: rote oder blaue Pille?");
-    updateButtons(["rot", "blau"]);
-}
-
-// Erzeugt Buttons anhand eines Options-Arrays und passt Farbe an (für rot und blau)
-/* function updateButtons(options) {
-    const buttonsDiv = document.getElementById("buttons");
-    buttonsDiv.innerHTML = "";
-    options.forEach(option => {
-        const btn = document.createElement("button");
-        btn.innerText = option;
-        // Spezielle Farbe für rote und blaue Pille
-        if (option.toLowerCase() === "rot") {
-            btn.style.backgroundColor = "red";
-            btn.style.color = "white";
-        } else if (option.toLowerCase() === "blau") {
-            btn.style.backgroundColor = "blue";
-            btn.style.color = "white";
-        }
-        btn.addEventListener("click", () => handleChoice(option.toLowerCase()));
-        buttonsDiv.appendChild(btn);
-    });
-} */
-    function updateButtons(options) {
-        const buttonsDiv = document.getElementById("buttons");
-        buttonsDiv.innerHTML = "";
-        options.forEach(option => {
-            let normalizedOption = option
-                .replace(/ä/g, "ae")
-                .replace(/ö/g, "oe")
-                .replace(/ü/g, "ue");
-    
-            const btn = document.createElement("button");
-            btn.innerText = normalizedOption;
-    
-            // Spezielle Farbe für rote und blaue Pille
-            if (normalizedOption.toLowerCase() === "rot") {
-                btn.style.backgroundColor = "red";
-                btn.style.color = "white";
-            } else if (normalizedOption.toLowerCase() === "blau") {
-                btn.style.backgroundColor = "blue";
-                btn.style.color = "white";
-            }
-    
-            btn.addEventListener("click", () => handleChoice(normalizedOption.toLowerCase()));
-            buttonsDiv.appendChild(btn);
-        });
-    }
-
-// Neueste Story-Einträge werden oben eingefügt
-function updateStory(text) {
-    const storyDiv = document.getElementById("story");
-    storyDiv.innerHTML = `<p>${text}</p>` + storyDiv.innerHTML;
-}
-
-function updateQuestion(text) {
-    document.getElementById("question").innerText = text;
-}
-
-// Überprüft, ob der Spieler "neustart" wählt
-function handleChoice(choice) {
-    if (choice === "neustart") {
-        restartGame();
-    }
-
-    // Zustand: Pillenwahl
-    if (gameState === "choosePill") {
-        if (choice === "rot") {
-            player.pill = "rot";
-            updateStory("Du nimmst die rote Pille – du bleibst im Wunderland und ich zeige dir, wie tief der Kaninchenbau wirklich ist.");
-            gameState = "enterMatrix";
-            updateQuestion("Möchtest du der Crew der Nebuchadnezzar beitreten oder alleine weitergehen?");
-            updateButtons(["crew", "alleine"]);
-        } else if (choice === "blau") {
-            player.pill = "blau";
-            updateStory("Du nimmst die blaue Pille – die Geschichte endet, du wachst in deinem Bett auf und glaubst, was immer du glauben willst.");
-            gameState = "exitMatrix";
-            updateQuestion("Möchtest du ein Leben in scheinbarer Sicherheit führen oder an der Realität zweifeln?");
-            updateButtons(["sicherheit", "zweifeln"]);
-
-    }}
-    // Zustand: Matrix betreten (Crew oder alleine)
-    else if (gameState === "enterMatrix") {
-        if (choice === "crew" || choice === "alleine") {
-            player.isCrew = (choice === "crew");
-            updateStory(`Du hast dich entschieden: ${player.isCrew ? "Crew-Mitglied" : "Einzelgänger"}.`);
-            gameState = "mission";
-            updateQuestion("Wähle eine Begegnung:");
-            updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-
-    }}
-    // Zustand: Matrix verlassen (Exit)
-    else if (gameState === "exitMatrix") {
-        if (choice === "sicherheit") {
-            updateStory("Du akzeptierst dein Schicksal und lebst ein ruhiges Leben in der Illusion.");
-            endGame("Spiel beendet.");
-        } else if (choice === "zweifeln") {
-            updateStory("Du beginnst zu zweifeln – aber die Wahrheit bleibt dir für immer verborgen.");
-            endGame("Spiel beendet.");
-
-    }}
-    // Zustand: Missionen auswählen
-    else if (gameState === "mission") {
-        let validMissions = ["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"];
-        if (validMissions.includes(choice)) {
-            // Voraussetzungen prüfen
-            if (choice === "architekt" && !player.keymakerTaken) {
-                updateStory("Dir fehlt der richtige Schlüssel, um den Architekten zu treffen.");
-                updateQuestion("Wähle eine andere Begegnung:");
-                updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-            } else if (choice === "orakel" && !player.merovingianMet) {
-                updateStory("Du kennst den Weg zum Orakel noch nicht.");
-                updateQuestion("Wähle eine andere Begegnung:");
-                updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-            } else if (choice === "merowinger" && !player.sentinelHacked) {
-                updateStory("Mit leeren Händen wird dich der Merowinger nicht empfangen.");
-                updateQuestion("Wähle eine andere Begegnung:");
-                updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-            } else {
-                // Wechsel in den entsprechenden Encounter-Zustand
-                gameState = (choice === "schlüsselmacher" ? "keymakerEncounter" : choice + "Encounter");
-                updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-                //processEncounter();
-            }
-        } else {
-            updateButtons(validMissions);
-        }
-    }
-    // Zustand: Agenten-Begegnung
-    else if (gameState === "agentenEncounter") {
-        if (choice === "kämpfen") {
-            if (player.isCrew && (player.architectMet && player.oracleMet)) {
-                updateStory("Mithilfe von Morpheus, Trinity, dem Wissen des Orakels und des Architekten besiegst du Agent Smith nach einem harten Kampf!");
-                winGame("Herzlichen Glückwunsch, du hast die Matrix bezwungen!");
-            } else {
-                updateStory("Ohne Unterstützung hast du keine Chance gegen Agent Smith! Dein Geist bleibt für immer in der Matrix gefangen.");
-                endGame("Spiel beendet.");
-            }
-        } else if (choice === "fliehen") {
-            updateStory("Du schaffst es gerade so, Agent Smith zu entkommen.");
-            gameState = "mission";
-            updateQuestion("Wähle eine weitere Begegnung:");
-            updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-
-    }
-    // Zustand: Sentinel-Begegnung
-    else if (gameState === "sentinelEncounter") {
-        if (choice === "ablenken") {
-            updateStory("Du hast den Sentinel erfolgreich abgelenkt.");
-            gameState = "mission";
-            updateQuestion("Wähle eine weitere Begegnung:");
-            updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-        } else if (choice === "hacken") {
-            if (player.trustedHacker) {
-                updateStory("Mithilfe des abtrünnigen Hackers hast du den Sentinel gehackt – er unterstützt dich jetzt.");
-                player.sentinelHacked = true;
-            } else {
-                updateStory("Du benötigst Hilfe beim Hacken eines Sentinels.");
-                player.sentinelHacked = false;
-            }
-            gameState = "mission";
-            updateQuestion("Wähle eine weitere Begegnung:");
-            updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-        }
-    }
-    // Zustand: Hacker-Begegnung
-    else if (gameState === "hackerEncounter") {
-        if (choice === "vertrauen") {
-            updateStory("Du vertraust dem abtrünnigen Hacker und erhältst seine Unterstützung.");
-            player.trustedHacker = true;
-        } else if (choice === "misstrauen") {
-            updateStory("Du misstraust dem Hacker und verlierst möglicherweise wichtige Informationen.");
-            player.trustedHacker = false;
-        }
-        gameState = "mission";
-        updateQuestion("Wähle eine weitere Begegnung:");
-        updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-    }
-    // Zustand: Merowinger-Begegnung
-    else if (gameState === "merowingerEncounter") {
-        if (choice === "annehmen") {
-            updateStory("Du gehst den Handel mit dem Merowinger ein. Neue Möglichkeiten eröffnen sich dir.");
-            player.merovingianMet = true;
-        } else if (choice === "ablehnen") {
-            updateStory("Du gehst keinen Handel mit dem Merowinger ein.");
-            player.merovingianMet = false;
-
-        }
-        gameState = "mission";
-        updateQuestion("Wähle eine weitere Begegnung:");
-        updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-    }
-    // Zustand: Schlüsselmacher (Keymaker) Begegnung
-    else if (gameState === "keymakerEncounter") {
-        if (choice === "nehmen") {
-            updateStory("Du nimmst den Schlüssel an. Neue Möglichkeiten öffnen sich.");
-            player.keymakerTaken = true;
-        } else if (choice === "ablehnen") {
-            updateStory("Du lehnst den Schlüssel ab. Ohne den Schlüssel kannst du den Architekten nicht treffen.");
-            player.keymakerTaken = false;
-            endGame("Ohne den Schlüssel ist deine Reise beendet.");
-
-        }
-        gameState = "mission";
-        updateQuestion("Wähle eine weitere Begegnung:");
-        updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-    }
-    // Zustand: Architekt-Begegnung
-    else if (gameState === "architectEncounter") {
-        if (choice === "akzeptieren") {
-            updateStory("Du akzeptierst das Wissen des Architekten. Deine Realität erweitert sich.");
-            player.architectMet = true;
-        } else if (choice === "ablehnen") {
-            updateStory("Du bewahrst deinen freien Willen, doch die Matrix bleibt rätselhaft.");
-            player.architectMet = true;
-        } else {
-            updateButtons(["akzeptieren", "ablehnen"]);
-        }
-        gameState = "mission";
-        updateQuestion("Wähle eine weitere Begegnung:");
-        updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-    }
-    // Zustand: Orakel-Begegnung
-    else if (gameState === "orakelEncounter") {
-        if (choice === "zukunft") {
-            updateStory("Das Orakel zeigt dir Visionen der Zukunft.");
-            player.oracleMet = true;
-        } else if (choice === "vergangenheit") {
-            updateStory("Das Orakel enthüllt dir Geheimnisse deiner Vergangenheit.");
-            player.oracleMet = true;
-        } else {
-            updateButtons(["zukunft", "vergangenheit"]);
-        }
-        gameState = "mission";
-        updateQuestion("Wähle eine weitere Begegnung:");
-        updateButtons(["agenten", "hacker", "sentinel", "merowinger", "schlüsselmacher", "architekt", "orakel"]);
-    }
-}}
-
-// Zeigt bei Beginn eines Encounters die passenden Buttons an
-function processEncounter() {
-    if (gameState === "agentenEncounter") {
-        updateQuestion("Agent Smith erscheint! Wähle: kämpfen oder fliehen?");
-        updateButtons(["kämpfen", "fliehen"]);
-    } else if (gameState === "sentinelEncounter") {
-        updateQuestion("Ein Sentinel nähert sich! Wähle: ablenken oder hacken?");
-        updateButtons(["ablenken", "hacken"]);
-    } else if (gameState === "hackerEncounter") {
-        updateQuestion("Ein abtrünniger Hacker bietet dir seine Dienste an. Vertrau ihm?");
-        updateButtons(["vertrauen", "misstrauen"]);
-    } else if (gameState === "merowingerEncounter") {
-        updateQuestion("Der Merowinger sagt: 'Alles hat seinen Preis.' Nimmst du sein Angebot an?");
-        updateButtons(["annehmen", "ablehnen"]);
-    } else if (gameState === "architectEncounter") {
-        updateQuestion("Der Architekt erklärt: 'Du bist Teil des großen Plans.' Akzeptierst du sein Wissen?");
-        updateButtons(["akzeptieren", "ablehnen"]);
-    } else if (gameState === "keymakerEncounter") {
-        updateQuestion("Der Schlüsselmacher bietet dir einen Schlüssel an. Nimmst du ihn?");
-        updateButtons(["nehmen", "ablehnen"]);
-    } else if (gameState === "orakelEncounter") {
-        updateQuestion("Das Orakel fragt: Willst du die Zukunft oder deine Vergangenheit erfahren?");
-        updateButtons(["zukunft", "vergangenheit"]);
-    }
-}
-
-function endGame(message) {
-    updateStory(message);
-    updateQuestion("<Spiel beendet>");
-    updateButtons(["neustart"]);
-}
-
-function winGame(message) {
-    updateStory(message);
-    updateQuestion("<Spiel gewonnen>");
-    updateButtons(["neustart"]);
-}
-
-// Setzt das Spiel zurück und startet neu
-function restartGame() {
+function resetPlayer() {
     player = {
         name: "",
         pill: "",
@@ -344,9 +40,228 @@ function restartGame() {
         oracleMet: false,
         sentinelHacked: false
     };
-    gameState = "start";
-    document.getElementById("story").innerHTML = "";
-    updateQuestion("Gib deinen Namen ein:");
-    document.getElementById("input-area").innerHTML = '<input type="text" id="input-field" placeholder="Dein Name"><button onclick="handleName()">Bestätigen</button>';
-    document.getElementById("buttons").innerHTML = "";
 }
+
+function handleName() {
+    const inputField = document.getElementById("input-field");
+    if (!inputField.value.trim()) return;
+    
+    player.name = inputField.value.trim();
+    updateStory(`${player.name}, wach auf!`);
+    
+    if (player.name.toLowerCase() === "kevin") updateStory(`Hi ${player.name}!`);
+    
+    document.getElementById("input-area").innerHTML = "";
+    nextState("choosePill", "Das ist deine letzte Chance. Wähle: rote oder blaue Pille?", ["rot", "blau"]);
+}
+
+function updateButtons(options) {
+    console.log("Updating buttons:", options);
+    
+    const buttonsDiv = document.getElementById("buttons");
+    if (!buttonsDiv) {
+        console.error("Fehler: buttons div nicht gefunden!");
+        return;
+    }
+    
+    buttonsDiv.innerHTML = "";
+    
+    options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.innerText = option;
+        btn.style.color = "white";
+        if (option === "rot") btn.style.backgroundColor = "red";
+        if (option === "blau") btn.style.backgroundColor = "blue";
+        btn.addEventListener("click", () => handleChoice(option));
+        buttonsDiv.appendChild(btn);
+    });
+}
+
+function updateStory(text) {
+    document.getElementById("story").innerHTML = `<p>${text}</p>` + document.getElementById("story").innerHTML;
+}
+
+function updateQuestion(text) {
+    document.getElementById("question").innerText = text;
+}
+
+function nextState(state, question, options) {
+    console.log(`Neuer State: ${state}`);
+    
+    gameState = state;
+    updateQuestion(question);
+    updateButtons(options);
+}
+
+function handleChoice(choice) {
+    console.log(`Choice: ${choice} bei State: ${gameState}`);
+    
+    if (choice === "neustart") return restartGame();
+
+    const choices = {
+        choosePill: {
+            rot: () => {
+                updateStory("Du nimmst die rote Pille – du bleibst im Wunderland und ich zeige dir, wie tief der Kaninchenbau wirklich ist.");
+                nextState("enterMatrix", "Möchtest du der Crew beitreten oder alleine weitergehen?", ["crew", "alleine"]);
+            },
+            blau: () => {
+                updateStory("Du nimmst die blaue Pille – die Geschichte endet, du wachst in deinem Bett auf und glaubst, was immer du glauben willst.");
+                nextState("exitMatrix", "Möchtest du Sicherheit oder zweifeln?", ["sicherheit", "zweifeln"]);
+            },
+        },
+        enterMatrix: {
+            crew: () => {
+                player.isCrew = true;
+                updateStory("Du bist jetzt Teil der Crew!");
+                startMissions();
+            },
+            alleine: () => startMissions()
+        },
+        exitMatrix: {
+            sicherheit: () => endGame("Du lebst ein ruhiges Leben in der Illusion."),
+            zweifeln: () => endGame("Du beginnst zu zweifeln, aber die Wahrheit bleibt verborgen.")
+        },
+        mission: {
+            agenten: () => processEncounter("agenten"),
+            hacker: () => processEncounter("hacker"),
+            sentinel: () => processEncounter("sentinel"),
+            merowinger: () => processEncounter("merowinger"),
+            keymaker: () => processEncounter("keymaker"),
+            architekt: () => processEncounter("architect"),
+            orakel: () => processEncounter("orakel")
+        }
+    };
+
+    if (choices[gameState]?.[choice]) {
+        choices[gameState][choice]();
+        return;
+    }
+
+    const encounterResponses = {
+        agentenEncounter: {
+            kämpfen: () => {
+                if (player.sentinelHacked && player.trustedHacker && player.keymakerTaken) {
+                    updateStory("Dank deiner Verbündeten hast du die Agenten besiegt!");
+                    endGame("Du hast die Agenten besiegt! Deine früheren Entscheidungen haben sich ausgezahlt.");
+                } else {
+                    endGame("Du hast gekämpft und verloren. Die Agenten waren zu stark.");
+                }
+            },
+            fliehen: () => {
+                player.trustedHacker = true;
+                updateStory("Du bist entkommen!");
+                startMissions();
+            },
+        },
+        sentinelEncounter: {
+            ablenken: () => endGame("Du hast den Sentinel abgelenkt und bist dabei gestorben."),
+            hacken: () => {
+                if (player.trustedHacker) {
+                    updateStory("Mithilfe des abtrünnigen Hackers hast du den Sentinel gehackt – er unterstützt dich jetzt.");
+                    startMissions();
+                } else {
+                    updateStory("Du bist entkommen, du benötigst Hilfe beim Hacken eines Sentinels.");
+                    startMissions();
+                }
+            }
+        },
+        hackerEncounter: {
+            vertrauen: () => {
+                player.trustedHacker = true;
+                updateStory("Der Hacker hilft dir mit wichtigen Informationen!");
+                startMissions();
+            },
+            misstrauen: () => {
+                updateStory("Du hast dem Hacker misstraut.");
+                startMissions();
+            },
+        },
+        merowingerEncounter: {
+            annehmen: () => {
+                player.merovingianMet = true;
+                updateStory("Der Merowinger gibt dir wertvolle Hinweise.");
+                startMissions();
+            },
+            ablehnen: () => {
+                player.merovingianMet = true;
+                updateStory("Der Merowinger verärgert dich.");
+                startMissions();
+            },
+        },
+        keymakerEncounter: {
+            nehmen: () => {
+                player.keymakerTaken = true;
+                updateStory("Du hast einen wichtigen Schlüssel erhalten!");
+                startMissions();
+            },
+            ablehnen: () => {
+                updateStory("Du hast den Schlüssel nicht genommen.");
+                startMissions();
+            },
+        },
+        architectEncounter: {
+            akzeptieren: () => {
+                player.architectMet = true;
+                updateStory("Du verstehst jetzt die Wahrheit hinter der Matrix.");
+                startMissions();
+            },
+            ablehnen: () => {
+                player.architectMet = true;
+                updateStory("Du hast das Wissen abgelehnt.");
+                startMissions();
+            },
+        },
+        orakelEncounter: {
+            zukunft: () => {
+                player.oracleMet = true;
+                updateStory("Das Orakel gibt dir eine Vision deiner Zukunft.");
+                startMissions();
+            },
+            vergangenheit: () => endGame("Du bist in der Vergangenheit gefangen.")
+        }
+    };
+
+    if (encounterResponses[gameState]?.[choice]) {
+        encounterResponses[gameState][choice]();
+    }
+}
+
+function startMissions() {
+    nextState("mission", "Wähle eine Begegnung:", ["agenten", "hacker", "sentinel", "merowinger", "keymaker", "architekt", "orakel"]);
+}
+
+function processEncounter(type) {
+    const encounters = {
+        agenten: ["Agent Smith erscheint! Kämpfen oder fliehen?", ["kämpfen", "fliehen"]],
+        sentinel: ["Ein Sentinel nähert sich! Ablenken oder hacken?", ["ablenken", "hacken"]],
+        hacker: ["Ein Hacker bietet Hilfe an. Vertrauen oder misstrauen?", ["vertrauen", "misstrauen"]],
+        merowinger: ["Der Merowinger bietet einen Handel an. Annehmen oder ablehnen?", ["annehmen", "ablehnen"]],
+        keymaker: ["Der Schlüsselmacher bietet dir einen Schlüssel an. Nehmen oder ablehnen?", ["nehmen", "ablehnen"]],
+        architect: ["Der Architekt fragt: Akzeptierst du sein Wissen?", ["akzeptieren", "ablehnen"]],
+        orakel: ["Das Orakel fragt: Zukunft oder Vergangenheit?", ["zukunft", "vergangenheit"]]
+    };
+
+    if (encounters[type]) nextState(`${type}Encounter`, ...encounters[type]);
+}
+
+function endGame(message) {
+    updateStory(message);
+    nextState("end", "<Spiel beendet>", ["neustart"]);
+}
+
+function restartGame() {
+    resetPlayer();
+    gameState = "start";
+    
+    document.getElementById("story").innerHTML = "";
+    document.getElementById("buttons").innerHTML = "";
+    document.getElementById("input-area").innerHTML = `
+        <input type="text" id="input-field" placeholder="Dein Name">
+        <button onclick="handleName()">Bestätigen</button>
+    `;
+    
+    updateQuestion("Gib deinen Namen ein:");
+}
+
+resetPlayer();
+
