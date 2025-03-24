@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einkaufsliste</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1>Einkaufsliste</h1>
+
+    <input type="text" id="artikel" placeholder="Artikelname...">
+    <input type="number" id="anzahl" placeholder="Anzahl...">
+    <input type="number" id="preis" placeholder="Preis pro Stück...">
+
+    <!-- Kategorie-Dropdown -->
+    <label for="kategorie">Wähle eine Kategorie:</label>
+    <select name="kategorie" id="kategorie">
+        <option value="empty">-- bitte wählen --</option>
+        <option value="fruits">Obst</option>
+        <option value="vegetables">Gemüse</option>
+        <option value="drogerie">Drogerie</option>
+    </select>
+
+    <button id="addButton">Hinzufügen</button>
+    <button id="clearButton">Liste leeren</button>
+
+    <!-- Lightmode/Darkmode-Button -->
+    <button id="modeToggle">Lightmode/Darkmode</button>
+
+    <ul id="liste"></ul>
+    <h5 id="gesamt"></h5>
+</body>
+
+</html>
