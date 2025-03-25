@@ -1,0 +1,63 @@
+/* Star Wars Theme: Hintergrund, Farben und Effekte */
+
+/* Hintergrund und globale Einstellungen */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Schwarzer Hintergrund */
+    background-size: cover;
+    background-attachment: fixed;
+    color: #f0f0f5;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Formular-Container */
+form {
+    background: rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    border: 2px solid #1fb1ff; /* Gelber, lightsaber-ähnlicher Rand */
+    border-radius: 8px;
+    box-shadow: 0 0 20px #1fb1ff;
+    max-width: 400px;
+    margin: auto;
+}
+
+/* Stil für das Dropdown-Menü und das Texteingabefeld */
+select, input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #333;
+    color: #fff;
+    border: 1px solid #1fb1ff;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Stil für den Button */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1fb1ff;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 0 10px #1fb1ff;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1fb1ff;
+}
+
+/* Stil für den Ausgabebereich */
+#output {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.75);
+    border-left: 5px solid #1fb1ff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #1fb1ff;
+}
