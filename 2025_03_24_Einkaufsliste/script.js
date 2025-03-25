@@ -137,3 +137,11 @@ clearButton.addEventListener("click", () => {
 modeToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
+
+// Enter Taste enabled
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+      event.preventDefault();
+      addButton.click();
+  }
+});
