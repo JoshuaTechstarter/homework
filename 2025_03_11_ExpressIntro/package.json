@@ -5,13 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "alias" : "nodemon index.js",
+    "alias": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ich",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2",
+    "homework": "file:",
     "nodemon": "^3.1.9"
   }
 }
