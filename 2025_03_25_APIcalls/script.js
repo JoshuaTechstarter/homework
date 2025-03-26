@@ -4,10 +4,8 @@
   const category = document.getElementById("kategorie").value;
   const output = document.getElementById("output");
   
-  // Ausgabe zurücksetzen
   output.innerHTML = "";
   
-  // Falls keine Kategorie gewählt wurde
   if (category === "empty") {
     output.innerHTML = "Bitte wählen Sie eine Kategorie aus.";
     return;
@@ -93,7 +91,6 @@
     });
 }
 
-// Event-Listener für den Such-Button
 const button = document.getElementById("searchButton");
 button.addEventListener("click", searchData);
 
