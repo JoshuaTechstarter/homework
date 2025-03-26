@@ -1,0 +1,21 @@
+{
+  "name": "meine-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "awesome-dev-jokes": "^1.0.3",
+    "express": "^4.21.2",
+    "meine-api": "file:",
+    "nodemon": "^3.1.9",
+    "sillyname": "^0.1.0"
+  }
+}
