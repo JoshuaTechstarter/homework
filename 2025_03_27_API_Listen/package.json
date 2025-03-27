@@ -1,0 +1,19 @@
+{
+  "name": "2025_03_27_api_listen",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "2025_03_27_api_listen": "file:",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
