@@ -20,8 +20,8 @@ app.get("/kevin", (req, res) => {
 });
 
 app.get("/joke", (req, res) => {
-  const joke = joke.getRandomJoke();
-  res.send(joke);
+  const Joke = joke.getRandomJoke();
+  res.send(Joke);
 });
 
 app.get("/randomname", (req, res) => {
