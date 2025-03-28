@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-app.use(express.json());
 
 const animals = [
     {id: 1, name: "Tiam", species: "Hund", age: "2"},
@@ -35,6 +34,7 @@ app.get("/animals/:id", (req, res) => {
 
 /*4.    POST /tiere
 → Fügt ein neues Tier zur Liste hinzu (über JSON-Body)*/
+app.use(express.json());
 app.post("/animals", (req, res) =>{
     const  {name, species, age} = req.body;
     const newAnimal = {
