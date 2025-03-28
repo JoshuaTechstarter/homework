@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Inception",
+    "genre": "Science Fiction",
+    "runtime": 148,
+    "release": 2010
+  },
+  {
+    "id": 2,
+    "title": "The Godfather",
+    "genre": "Crime",
+    "runtime": 175,
+    "release": 1972
+  },
+  {
+    "id": 3,
+    "title": "Pulp Fiction",
+    "genre": "Crime",
+    "runtime": 154,
+    "release": 1994
+  },
+  {
+    "id": 4,
+    "title": "The Dark Knight",
+    "genre": "Action",
+    "runtime": 152,
+    "release": 2008
+  }
+]
