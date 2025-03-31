@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "2025_03_28_api_json": "file:",
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "nodemon": "^3.1.9"
   }
