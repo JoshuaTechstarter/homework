@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1>Filmsammlung</h1>
+    <button onclick="fetchMovies()">Alle Filme anzeigen</button>
+
+
+    <h2>Film suchen</h2>
+    <form id="searchForm">
+        <label for="searchId">ID:</label>
+        <input type="text" id="searchId" name="id">
+        <label for="searchTitle">Titel:</label>
+        <input type="text" id="searchTitle" name="title">
+        <label for="searchGenre">Genre:</label>
+        <input type="text" id="searchGenre" name="genre">
+        <label for="searchRuntime">Laufzeit:</label>
+        <input type="text" id="searchRuntime" name="runtime">
+        <label for="searchRelease">Erscheinungsjahr:</label>
+        <input type="text" id="searchRelease" name="release">
+        <button type="submit">Suchen</button>
+    </form>
+
+    <h2>Ergebnis:</h2>
+    <pre id="output"></pre>
+</body>
+
+</html>
