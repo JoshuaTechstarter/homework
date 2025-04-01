@@ -1,7 +1,9 @@
 const url = 'http://localhost:5001/movies';
 
 function fetchMovies() {
-    fetch(url).then(res => res.json()).then(data => showResult(data));
+    fetch(url)
+        .then(res => res.json())
+        .then(data => showResult(data));
 }
 
 
@@ -15,11 +17,16 @@ document.getElementById("searchForm").addEventListener("submit", function (event
     let release = document.getElementById("searchRelease").value;
 
     let query = [];
-    if (id) query.push(`id=${id}`);
-    if (title) query.push(`title=${title}`);
-    if (genre) query.push(`genre=${genre}`);
-    if (runtime) query.push(`runtime=${runtime}`);
-    if (release) query.push(`release=${release}`);
+    if (id)
+        query.push(`id=${id}`);
+    if (title)
+        query.push(`title=${title}`);
+    if (genre)
+        query.push(`genre=${genre}`);
+    if (runtime)
+        query.push(`runtime=${runtime}`);
+    if (release)
+        query.push(`release=${release}`);
 
     let queryString = query.length ? '?' + query.join('&') : '';
 
