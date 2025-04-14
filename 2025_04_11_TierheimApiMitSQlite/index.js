@@ -1,20 +1,20 @@
 const express = require("express");
 const app = express();
 const sqlite3 = require("sqlite3");
-const db = new sqlite3.Database(":memory:");
+const db = new sqlite3.Database("tiere.db");
 
 app.use(express.json());
 
 
 db.serialize(() => {
-    db.run(`CREATE TABLE tiere (
+    db.run(`CREATE TABLE IF NOT EXISTS tiere (
     id INTEGER PRIMARY KEY,
     tierart VARCHAR(50),
     name VARCHAR(50),
     krankheit VARCHAR(100),
     age INT,
     gewicht REAL);`)
-    db.run(`INSERT INTO tiere(tierart,name,krankheit,age,gewicht) VALUES ("Hund","Bello","husten",5,12.4)`)
+    /*db.run(`INSERT INTO tiere(tierart,name,krankheit,age,gewicht) VALUES ("Hund","Bello","husten",5,12.4)`)*/
 
     selectAllTiereQuery = "SELECT * FROM tiere"
     db.all(selectAllTiereQuery, (err, rows) => {
@@ -113,7 +113,9 @@ app.delete("/tiere/:id", (req, res) => {
 });
 
 
-app.listen(3000)
+app.listen(3000, () => {
+    console.log("Der Server läuft 🐾");
+});
 
 
 
