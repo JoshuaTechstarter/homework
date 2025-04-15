@@ -45,7 +45,6 @@ buttonAddAnimal.addEventListener("click", async () => {
     };
 
     try {
-        // send the POST request to the server
         const res = await fetch("http://localhost:3000/tiere", {
             method: "POST",
             headers: {
