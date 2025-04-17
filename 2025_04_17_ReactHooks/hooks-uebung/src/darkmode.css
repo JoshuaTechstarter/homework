@@ -1,0 +1,46 @@
+/* darkmode.css */
+
+:root {
+    --bg-color: #f5f5f5;
+    --text-color: #222;
+    --btn-bg: #4caf50;
+    --btn-hover: #45a049;
+    --btn-text: #fff;
+    --custom-bg-color: var(--bg-color); /* NEU */
+  }
+  
+  .dark {
+    --bg-color: #1e1e1e;
+    --text-color: #eee;
+    --btn-bg: #333;
+    --btn-hover: #555;
+    --btn-text: #fff;
+  }
+  
+  /* Global Styles */
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--custom-bg-color); /* ← das ist jetzt flexibel */
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Buttons */
+  button {
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0.5rem;
+  }
+  
+  button:hover {
+    background-color: var(--btn-hover);
+  }
+  
