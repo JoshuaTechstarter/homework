@@ -6,6 +6,7 @@ function TierCard({ name, art, krankheit }) {
             <h2>{name}</h2>
             <p><strong>Art: </strong>{art}</p>
             <p><strong>Krankheit: </strong>{krankheit}</p>
+
         </div>
     );
 }
