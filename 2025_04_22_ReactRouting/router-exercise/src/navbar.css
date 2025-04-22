@@ -1,0 +1,42 @@
+nav {
+    background: white;
+    padding: 15px 0;
+    position: center;
+    margin: 0 auto; 
+    top: 0;
+    left: 0;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    z-index: 1000;
+    width: 80%;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    padding: 10px 15px;
+    transition: box-shadow 0.3s ease-in-out;
+    transition: 0.3s;
+    box-sizing: border-box;
+
+}
+
+nav ul li a:hover {
+    background:  lightgray;
+    color: darkorange;
+    border-bottom: #2975a1;
+    box-shadow: 0px 5px 10px darkorange (255, 107, 129, 0.4);
+}
