@@ -1,7 +1,7 @@
 import React from 'react'
-import Listing from './TierCard';
+import Listing from '../components/TierCard';
 import { useState } from 'react'
-import './patienten.css'
+import '../styles/patienten.css'
 
 function Patienteliste() {
     const [anzahl, setAnzahl] = useState(1);

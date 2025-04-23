@@ -1,10 +1,10 @@
-import './App.css';
+import '../styles/App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Patientenliste from './Patienteliste'
 import FAQ from './FAQ'
-import About from './About'
+import Pokemon from './Pokemon'
 import Kontakt from './contact'
-import Header from './Header'
+import Header from '../components/Header'
 import Home from './Home'
 
 
@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="patienten" element={<Patientenliste></Patientenliste>}>Unsere Patieren</Route>
         <Route path="FAQ" element={<FAQ></FAQ>}>FAQ</Route>
-        <Route path="about" element={<About></About>}>About us</Route>
+        <Route path="pokemon" element={<Pokemon></Pokemon>}>About us</Route>
         <Route path="contact" element={<Kontakt></Kontakt>}>Kontakt</Route>
       </Routes>
 

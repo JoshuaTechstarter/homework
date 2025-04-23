@@ -1,4 +1,4 @@
-import './TierCard.css';
+import '../styles/TierCard.css';
 
 
 function TierCard(props) {
