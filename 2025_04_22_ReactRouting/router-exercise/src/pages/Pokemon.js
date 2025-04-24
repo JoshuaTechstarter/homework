@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PokemonCard from '../components/PokemonCard';
 import BackToTopButton from '../components/BackToTopButton';
+import { Link } from "react-router-dom";
+
 
 function Pokemon() {
     const [pokemonList, setPokemonList] = useState([]);
@@ -28,7 +30,7 @@ function Pokemon() {
         if (!loading) {
             fetchPokemons();
         }
-    }, [offset]); // <- Kein Fehler, da loading nur innerhalb geprüft wird, aber nicht als Abhängigkeit gebraucht wird
+    }, [offset]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,10 +49,13 @@ function Pokemon() {
 
     return (
         <div>
-            <h1>PokémDex</h1>
+            <h1>PokéDex</h1>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 {pokemonList.map((pokemon) => (
-                    <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                    <PokemonCard
+                        key={pokemon.id}
+                        id={pokemon.id}
+                        pokemon={pokemon} />
                 ))}
             </div>
             {loading && <p><strong>Pokémon werden geladen...</strong></p>}
