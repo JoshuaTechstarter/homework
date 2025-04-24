@@ -1,0 +1,89 @@
+/* PokedexEntry.css */
+.pokedex-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f44336;
+  border: 4px solid #333;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  font-family: 'Verdana', sans-serif;
+  color: white;
+}
+
+.pokedex-screen {
+  background-color: #212121;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.pokedex-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.pokedex-id {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #a17d13;
+  margin-right: 10px;
+}
+
+.pokemon-name {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #00e5ff;
+}
+
+.pokemon-sprite {
+  display: block;
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  image-rendering: pixelated;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.cry-button,
+.sprite-toggle-button {
+  background-color: #ffcb05;
+  border: none;
+  border-radius: 8px;
+  color: #212121;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cry-button:hover,
+.sprite-toggle-button:hover {
+  background-color: #ffd843;
+}
+
+.cry-button:active,
+.sprite-toggle-button:active {
+  background-color: #e6b800;
+}
+
+.pokemon-info {
+  margin-top: 1rem;
+  background-color: #424242;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #fff;
+}
