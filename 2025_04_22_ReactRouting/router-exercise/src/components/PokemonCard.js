@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/PokemonCard.css';
+import { Link } from 'react-router-dom'
 
 const typeColors = {
     normal: '#A8A77A',
@@ -28,15 +29,17 @@ function PokemonCard({ pokemon }) {
     const backgroundColor = typeColors[primaryType] || '#777';
 
     return (
-        <div className="pokemon-card" style={{ borderColor: backgroundColor }}>
-            <div className="card-header" style={{ backgroundColor }}>
-                <h3>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h3>
+        <Link style={{ textDecoration: "none" }} to={`/pokedex/${pokemon.id}`}>
+            <div className="pokemon-card" style={{ borderColor: backgroundColor }}>
+                <div className="card-header" style={{ backgroundColor }}>
+                    <h3>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h3>
+                </div>
+                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                <div className="card-body">
+                    <p>Type: {pokemon.types.map(t => t.type.name).join(', ')}</p>
+                </div>
             </div>
-            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-            <div className="card-body">
-                <p>Type: {pokemon.types.map(t => t.type.name).join(', ')}</p>
-            </div>
-        </div>
+        </Link>
     );
 }
 
