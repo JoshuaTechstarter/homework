@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import '../styles/PokedexEntry.css';
 
+
 function PokedexEntry({ pokemon }) {
     const [isShiny, setIsShiny] = useState(false);
+
+
 
     if (!pokemon) {
         return <p>Lade Pokémon-Daten...</p>;
     }
 
+
     const handleToggleSprite = () => {
         setIsShiny(!isShiny);
     };
+
+
 
     return (
         <div className="pokedex-container">
