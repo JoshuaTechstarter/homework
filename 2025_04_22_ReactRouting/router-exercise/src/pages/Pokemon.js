@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PokemonCard from '../components/PokemonCard';
 import BackToTopButton from '../components/BackToTopButton';
-import { Link } from "react-router-dom";
+
 
 
 function Pokemon() {
