@@ -38,8 +38,9 @@ function Pokemon() {
             const windowHeight = window.innerHeight;
             const fullHeight = document.body.scrollHeight;
 
-            if (scrollTop + windowHeight >= fullHeight - 100) {
+            if (!loading && scrollTop + windowHeight >= fullHeight - 100) {
                 setOffset((prev) => prev + limit);
+
             }
         };
 
